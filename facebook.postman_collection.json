@@ -1,0 +1,110 @@
+{
+	"info": {
+		"_postman_id": "77000246-5fb7-405a-b39f-6221a17c6447",
+		"name": "facebook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "currentuser ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/v1/api/users/currentuser",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"users",
+						"currentuser"
+					]
+				},
+				"description": "Get the status of the current user"
+			},
+			"response": []
+		},
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b1c5d5d-d412-468c-91d6-ab30f19a25db",
+						"exec": [
+							"pm.test(\"Status code is 200 for signup\", () => {",
+							"    pm.response.to.have.status(200)",
+							"})",
+							"",
+							"pm.test(\"Should contain proper email and password\", () => {",
+							"    const jsonData = pm.response.json()",
+							"    pm.expect(jsonData.email).to.eql(\"test@test.com\")",
+							"    pm.expect(jsonData.password).to.eql(\"password\")",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@gmail.com\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/v1/api/users/signup",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"v1",
+						"api",
+						"users",
+						"signup"
+					]
+				},
+				"description": "signup a new user\n"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "641914ec-8c11-4f0f-80a0-86ad3637af77",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "87be7c10-83c1-424b-806b-e393aac4413f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "11a7d418-f275-4e2b-8da2-0ecbca1f3852",
+			"key": "host",
+			"value": "facebook.dev"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
