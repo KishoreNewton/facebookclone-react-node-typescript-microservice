@@ -4,10 +4,12 @@ import { currentUserRouter } from './routes/current-user.router'
 import { signinRouter } from './routes/signin.router'
 import { signupRouter } from './routes/signup.router'
 import { signoutRouter } from './routes/signout.router'
+import { twoFactor } from './routes/enableTwoFactor.router'
 
 const app = express()
 app.use(json())
 app.use(currentUserRouter)
+app.use(twoFactor)
 app.use(signinRouter)
 app.use(signoutRouter)
 app.use(signupRouter)
